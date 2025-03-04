@@ -1,0 +1,30 @@
+#include <stdio.h>
+
+int main()
+{
+    int n,a,num;
+    int b=0;
+    printf("Enter the number : ");
+    scanf("%d",&n);
+    num=n;
+    while(num!=0)
+    {
+      a=num%10;
+      b+=a*a*a;
+      num/=10;
+    }
+    printf("%d\n",b);
+    if (b==n)
+    {
+        printf("It is a Armstrong number");
+    }
+    else
+    {
+        printf("Not");
+    }
+}
+
+OUTPUT:
+Enter the number: 153
+153
+It is a Armstrong number
