@@ -1,0 +1,39 @@
+LEET CODE PROBLEM: 9
+
+#include <stdio.h>
+void ispalindrome(int x)
+{
+      if(x<0)
+    {
+        printf("False");
+        return ;
+    }
+    int rev = 0;
+    int y=x;
+    while(y)
+    {
+        rev = rev * 10 + y % 10;
+        y=y/10;
+    }
+    if(rev == x){
+        printf("True");
+    }
+    else{
+        printf("False");
+    }
+}
+int main(){
+    int x;
+    scanf("%d",&x);
+    ispalindrome(x);
+}
+
+OUTPUT:1
+
+121
+True
+
+OUTPUT:2
+
+1234
+False
