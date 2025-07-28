@@ -20,21 +20,30 @@ int search(int nums[],int numssize,int target) {
 		{
 			right=mid-1;
 		}
-		else
+	/*	else
 		{
 		    if(target>nums[numssize]&&target<nums[numssize])
 		    {
 		        numssize=numssize+1;
 		    }
-		}
+		}*/
 	}
 
 }
 int main()
 {
-    int nums[ ]={1,2,4,5};
-    int target=7;
-    int result=search(nums,5,target);
+    int size;
+    printf("Enter the size of the array: ");
+    scanf("%d ",&size);
+    int nums[size];
+    for(int i=0;i<size;i++){
+        scanf("%d",&nums[i]);
+    }
+    
+    int target;
+    printf("Enter the target to be found: ");
+    scanf("%d",&target);
+    int result=search(nums,size,target);
     if(result!=-1)
     {
         printf("Target %d found at index %d\n", target, result);
@@ -45,6 +54,14 @@ int main()
     }
 }
 
+
 OUTPUT:
 
-Target 7 found at index 5
+Enter the size of the array: 5
+1
+2
+3
+4
+5
+Enter the target to be found: 4
+Target 4 found at index 3
