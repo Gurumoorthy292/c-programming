@@ -1,0 +1,39 @@
+#include <stdio.h>
+int Linear_search(int nums[],int numssize,int target) {
+    for(int i=0;i<numssize;i++){
+        if(nums[i]==target){
+            return i;
+    }
+    return -1;
+
+}
+int main()
+{
+    int size;
+    printf("Enter the size of the array: ");
+    scanf("%d ",&size);
+    int nums[size];
+    for(int i=0;i<size;i++){
+        scanf("%d",&nums[i]);
+    }
+    
+    int target;
+    printf("Enter the tareget to be found: ");
+    scanf("%d",&target);
+    int result=Linear_search(nums,size,target);
+    if(result!=-1)
+    {
+        printf("Target %d found at index %d\n", target, result);
+    }
+    else
+    {
+        printf("Target %d not found\n", result);
+    }
+}
+
+OUTPUT:
+
+Enter the size of the array (Linear Search): 5
+Enter the Elements: 1 2 3 4 5
+Enter the target to be found: 5
+Target 5 found at index 4
