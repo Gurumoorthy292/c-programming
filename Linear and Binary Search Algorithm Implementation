@@ -1,0 +1,114 @@
+#include <stdio.h>
+
+// Linear Search Function
+int linearSearch(int arr[], int n, int target) {
+    for (int i = 0; i < n; i++)
+        if (arr[i] == target)
+            return i;
+    return -1;
+}
+
+// Binary Search Function (on sorted array)
+int binarySearch(int arr[], int n, int target) {
+    int low = 0, high = n - 1;
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (arr[mid] == target)
+            return mid;
+        else if (arr[mid] < target)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    return -1;
+}
+
+// Sort array for Binary Search
+void sortArray(int arr[], int n) {
+    for (int i = 0; i < n - 1; i++)
+        for (int j = 0; j < n - i - 1; j++)
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+}
+
+// Function to print Time Complexity Table
+void printTimeComplexityTable() {
+    printf("\n-----------------------------------\n");
+    printf("| Algorithm      | Best | Worst   |\n");
+    printf("|----------------|------|---------|\n");
+    printf("| Linear Search  | O(1) | O(n)    |\n");
+    printf("| Binary Search  | O(1) | O(log n)|\n");
+    printf("-----------------------------------\n");
+}
+
+int main() {
+    int n, target, choice, result;
+
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+
+    int arr[n];
+    printf("Enter %d array elements:\n", n);
+    for (int i = 0; i < n; i++)
+        scanf("%d", &arr[i]);
+
+    printf("Enter the element to search: ");
+    scanf("%d", &target);
+
+    printf("\nSearch Options:\n");
+    printf("1. Linear Search\n");
+    printf("2. Binary Search (requires sorted array)\n");
+    printf("Enter your choice: ");
+    scanf("%d", &choice);
+
+    switch (choice) {
+        case 1:
+            result = linearSearch(arr, n, target);
+            if (result != -1)
+                printf("Element %d found at index %d using Linear Search.\n", target, result);
+            else
+                printf("Element %d not found using Linear Search.\n", target);
+            break;
+
+        case 2:
+            sortArray(arr, n);  // Sort before binary search
+            result = binarySearch(arr, n, target);
+            if (result != -1)
+                printf("Element %d found at index %d using Binary Search.\n", target, result);
+            else
+                printf("Element %d not found using Binary Search.\n", target);
+            break;
+
+        default:
+            printf("Invalid choice.\n");
+    }
+
+    // Display Time Complexity Table
+    printTimeComplexityTable();
+
+    return 0;
+}
+
+
+OUTPUT:
+
+Enter the size of the array: 5
+Enter 5 array elements:
+1 2 3 6 8
+Enter the element to search: 4
+
+Search Options:
+1. Linear Search
+2. Binary Search (requires sorted array)
+Enter your choice: 2
+Element 4 not found using Binary Search.
+
+-----------------------------------
+| Algorithm      | Best | Worst   |
+|----------------|------|---------|
+| Linear Search  | O(1) | O(n)    |
+| Binary Search  | O(1) | O(log n)|
+-----------------------------------
