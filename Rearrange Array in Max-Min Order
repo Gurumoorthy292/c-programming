@@ -1,0 +1,84 @@
+Given an array arr of distinct integers. Rearrange the array in such a way that the first element is the
+largest and the second element is the smallest, the third element is the second largest and the fourth
+element is the second smallest, and so on.
+
+LINK: https://www.geeksforgeeks.org/problems/alternative-sorting1311/1
+
+
+SOURCE CODE:
+
+#include <stdio.h>
+
+void sortArray(int arr[], int n) {
+	// Bubble sort to sort the array in ascending order
+	for (int i = 0; i < n - 1; i++)
+		for (int j = 0; j < n - i - 1; j++)
+			if (arr[j] > arr[j + 1]) {
+				int temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
+			}
+}
+
+int main() {
+	int n;
+	printf("Enter the size of the array: ");
+	scanf("%d", &n);
+
+	int arr[n];
+	printf("Enter %d array elements:\n", n);
+	for (int i = 0; i < n; i++)
+		scanf("%d", &arr[i]);
+
+	// Sort the array first
+	sortArray(arr, n);
+
+	// Create a temporary array to store the result
+	int temp[n];
+	int start = 0;
+	int end = n - 1;
+	int i = 0;
+
+	// Rearrange elements: first largest, then smallest, etc.
+	while (start < end) {
+		if (i % 2 == 0) {
+			temp[i] = arr[end--];  // Place largest elements at even indices
+		} else {
+			temp[i] = arr[start++]; // Place smallest elements at odd indices
+		}
+		i++;
+	}
+
+	// If there's an odd number of elements, handle the middle one
+	if (start == end) {
+		temp[i] = arr[start];  // Place the last element at the correct position
+	}
+
+	// Copy rearranged result back to arr
+	for (int i = 0; i < n; i++) {
+		arr[i] = temp[i];
+	}
+
+	// Print the final rearranged array
+	printf("Rearranged array: ");
+	for (int i = 0; i < n; i++) {
+		printf("%d ", arr[i]);
+	}
+	printf("\n");
+
+	return 0;
+}
+
+OUTPUT:
+
+Example 1:
+
+Input: arr[] = [7, 1, 2, 3, 4, 5, 6]
+Output: [7, 1, 6, 2, 5, 3, 4]
+Explanation: The first element is first maximum and second element is first minimum and so on.
+
+Example 2:
+
+Input: arr[] = [1, 6, 9, 4, 3, 7, 8, 2]
+Output: [9, 1, 8, 2, 7, 3, 6, 4]
+Explanation: The first element is first maximum and second element is first minimum and so on.
