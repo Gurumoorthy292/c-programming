@@ -1,0 +1,34 @@
+
+#include <stdio.h>
+
+int max(int a, int b) {
+    return (a > b) ? a : b;
+}
+
+int maxSubArray(int* nums, int numsSize) {
+    if (numsSize == 0) return 0;
+
+    int cursum = nums[0];
+    int maxsum = nums[0];
+
+    for (int i = 1; i < numsSize; i++) {
+        cursum = max(nums[i], cursum + nums[i]);
+        maxsum = max(maxsum, cursum);
+    }
+    return maxsum;
+}
+
+int main() {
+    int nums[] = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+    int numsSize = sizeof(nums) / sizeof(nums[0]);
+
+    int result = maxSubArray(nums, numsSize);
+    printf("Maximum subarray sum is %d\n", result);
+
+    return 0;
+}
+
+
+OUTPUT:
+
+Maximum subarray sum is 6
